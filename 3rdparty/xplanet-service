@@ -1,0 +1,35 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides: xplanet-service-@@name@@
+# Required-Start: $local_fs $syslog $remote_fs
+# Required-Stop: $local_fs $syslog $remote_fs
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: xplanet Daemon for @@name@@
+# Description: Launch xplanet process
+### END INIT INFO
+
+case "$1" in
+    start)
+            echo "Starting xplanet Daemon for @@name@@..."
+            xplanet -conf /etc/xplanet/xplanet-@@name@@.conf -output @@targetFolder@@/xplanet/img/xplanet_earth.png -wait @@delay@@ -body @@type@@ -latitude 40 -longitude 10 -geometry @@size@@ &
+            #sh /usr/sbin/xplanet.sh @@ip@@ @@targetFolder@@ @@name@@ @@port@@ @@delay@@ @@url@@ @@size@@ @@login@@ @@password@@ @@log@@
+            echo $! > /run/xplanet-@@name@@.pid
+            ;;
+    stop)
+            echo "Stopping xplanet Daemon for @@name@@..."
+            #pkill -f xplanet.sh
+            kill -9 `cat /run/xplanet-@@name@@.pid`
+            rm /run/xplanet-@@name@@.pid
+            ;;
+    restart)
+            $0 stop
+            sleep 1
+            $0 start
+            ;;
+    *)
+            echo "Usage: $0 {start|stop|restart}"
+            exit 1
+            ;;
+esac

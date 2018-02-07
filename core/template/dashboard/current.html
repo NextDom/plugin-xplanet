@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="plugins/xplanet/core/template/css/xplanet.css">
+<div class="eqLogic-widget eqLogic" style="width: 350px;background-color: #background_color#; #style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="dashboard" >
+ <span class="statusCmd" style="position : absolute;left : 5px; width : 30px;z-index: 1030;"></span>
+ <i class='fa fa-refresh pull-right cursor refresh' style="margin-top: 3px;margin-right: 3px;"></i>
+ <span class="cmd cmd-widget" data-cmd_id="#refresh_id#" style="display:none;"></span>
+ <center class="widget-name"><strong><a href="#eqLink#" style="font-size : 1.1em;"> #city# </a></strong></center>
+ <div style="position : relative; left : 15px;" class="tooltips" title="#collectDate#">
+  	<div id="xplanet-#name#"><img id="img_#type#" src="pict/blank.png"></div>
+</div><br/>
+<div style="margin-top: -15px;">
+    <center>#forecast#</center>
+</div>
+<script>
+	$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
+		jeedom.cmd.execute({id: '#refresh_id#'});
+	});
+	/* xplanet */
+
+	var xplanet_timeout;
+
+	function xplanet () {
+	  var now = new Date().getTime();
+	  /* préchargement des images */
+	  var img_xpl = $("<img />").attr("src", "xplanet-#name#/img/xplanet_#type#.png?"+now);
+	  /* affichage des nouvelles images à l'écran */
+	  $("#img_#type#").attr("src", "xplanet-#name#/img/xplanet_#type#.png?"+now);
+	  /*pause de 120 secondes */
+	  xplanet_timeout = setTimeout("xplanet()", 120000);
+	}
+</script>
+</div>

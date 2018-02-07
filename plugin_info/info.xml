@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info>
+    <id>xplanet</id>
+    <name>xplanet</name>
+    <description>Plugin permettant l'affichage de la terre via Xplanet</description>
+    <icon>fa fa-keyboard-o</icon>
+    <licence>AGPL</licence>
+    <author>Slobberbone</author>
+    <require>1.212.0</require>
+    <category>weather</category>
+</info>
