@@ -232,5 +232,3 @@ class xplanetCmd extends cmd {
 }
 
 
-
-?>
