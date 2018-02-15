@@ -87,10 +87,10 @@ class xplanet extends eqLogic {
 			throw new Exception(__('Le champs Dimension ne peut être vide', __FILE__));
 		}
 		// Si la chaîne contient des caractères spéciaux
-		if (!preg_match("#[0-9][0-9][0-9][0-9]x[0-9][0-9][0-9][0-9]$#", $this->getConfiguration('size'))) {
-			if (!preg_match("#[0-9][0-9][0-9]x[0-9][0-9][0-9][0-9]$#", $this->getConfiguration('size'))) {
-				if (!preg_match("#[0-9][0-9][0-9]x[0-9][0-9][0-9]$#", $this->getConfiguration('size'))) {
-					if (!preg_match("#[0-9][0-9][0-9][0-9]x[0-9][0-9][0-9]$#", $this->getConfiguration('size'))) {
+		if (!preg_match($this->paternForPregMatch(), $this->getConfiguration('size'))) {
+			if (!preg_match($this->paternForPregMatch(), $this->getConfiguration('size'))) {
+				if (!preg_match($this->paternForPregMatch(), $this->getConfiguration('size'))) {
+					if (!preg_match($this->paternForPregMatch(), $this->getConfiguration('size'))) {
 						throw new Exception(__('Le champs Dimension doit être au format nombrexnombre (ex 500x500)', __FILE__));
 					}
 				}
@@ -210,6 +210,11 @@ class xplanet extends eqLogic {
 		} else {
 			return '';
 		}
+	}
+	
+	private function paternForPregMatch()
+	{
+		return "#[0-9][0-9][0-9]x[0-9][0-9][0-9][0-9]$#";
 	}
 
 }
